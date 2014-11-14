@@ -40,60 +40,38 @@
       <!-- Any section element inside of this container is displayed as a slide -->
           
       <div class="slides" id="slide-container">
-      
-
 <section>
 <h2> LAOLIN-WEB-PPT</h2>
 <h3>欢迎光临LAOLIN在线演示系统</h3>
-  
-
-<h3>请输入数据文件路径:</h3>
-<form onsubmit='gomd()'>
-<script>
-  function gomd(){
-  console.log('asfaf');
-    location.href="./?ppt="+
-    encodeURIComponent(document.getElementById("mdfile").value);
-    return false;
-  }
-</script>
-<input name='mdfile' id='mdfile' value='data/ppt-1.md' size='99'/>
-<h2><a href="#" onclick='return gomd()'>Go!</a></h2>
-</form>
 <ul>
+<li><a href='./?ppt=data%2f_list.md'>[内容列表]</a></li>
 <li><a href='./?ppt=data%2fppt-help.md'>[帮助文件]</a></li>
 </ul>
-<p>
-请按 【空格】或【n】 进行翻页
-
-
-
-
 </section>        
-<section id='ppt-slides-end'>
+      </div><!-- .slide -->
+    </div><!-- .reveal -->
+<a data-markdown><!-- 为了加载markdown依赖文件 --></a>
+
+<section id='ppt-slides-end-hidden' style="display:none">
 <h3>放映结束</h3>
   
 <p>感谢观看。
 <p>&nbsp;
 <p><a href='#' class='btn' onclick="Reveal.slide(0);return false;">回到第一页</a>
 <p><a href='#' class='btn' onclick="Reveal.toggleOverview(true);return false;">全部页面总览</a>
-<p><a href='./'>观看结束</a>
+<p><a href='./'>关闭此PPT</a>
+<p><a href='./?ppt=data%2f_list.md'>[内容列表]</a>
+<p><a href='./?ppt=data%2fppt-help.md'>[帮助文件]</a>
 <hr>
   &copy; 2014 <a href='http://laolin.com'>laolin</a> 在线演示系统
 </section>
-        
-        
-        
-      </div>
-
-    </div>
-<a data-markdown><!-- 为了加载markdown依赖文件 -->
 
     <script src="lib/reveal.js/lib/js/head.min.js"></script>
     <script src="lib/reveal.js/js/reveal.min.js"></script>
 
     <script>
 
+      var location_hash=document.location.hash;
       // Full list of configuration options available here:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
@@ -119,6 +97,7 @@
               var ppt_file= Reveal.getQueryHash().ppt;
               if(ppt_file) {
                 setMd(ppt_file);
+                document.location.hash=location_hash;
               }
             }
           },
@@ -132,7 +111,9 @@
     </script>
 <script>
 function setMd(md,sep_s,sep_v){
-  var lastppt=document.getElementById('ppt-slides-end');
+  var lastppt=document.getElementById('ppt-slides-end-hidden');
+  lastppt.setAttribute('id','ppt-slides-end');
+  lastppt.setAttribute('style','');
   var ep=document.getElementById('slide-container');
   while (ep.hasChildNodes()) {
     ep.removeChild(ep.lastChild);
