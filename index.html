@@ -61,7 +61,7 @@
 <hr>
 <ul>
 <li><a href='./#/1'> PPT列表 </a>
-<li><a href='./?ppt=data%2fppt-help.md'>帮助文件</a>
+<li><a href='./?ppt=ppt-help'>帮助文件</a>
 </ul>
 <hr>
   &copy; 2014 <a href='http://laolin.com'>laolin</a> 在线演示系统
@@ -103,14 +103,12 @@
 <script>
 ;(function(){
   var ppt_file= Reveal.getQueryHash().ppt;
-  if(!ppt_file) {
-    ppt_file='data/_list.md';
-  }
   setMd(ppt_file);
   document.location.hash=location_hash;
 })();
             
-function setMd(md,sep_s,sep_v){
+function setMd(mdf,sep_s,sep_v){
+  var mdPath='./data/';
   var lastppt=document.getElementById('ppt-slides-end-hidden');
   lastppt.setAttribute('id','ppt-slides-end');
   lastppt.setAttribute('style','');
@@ -119,7 +117,8 @@ function setMd(md,sep_s,sep_v){
     ep.removeChild(ep.lastChild);
   }
   sec=document.createElement('section');
-  md=md||'data/ppt-help.md';
+  mdf=mdf||'_list';
+  md=mdPath+mdf+'/'+mdf+'.md';
   sep_s=sep_s||"^\n={3,}\n\n";
   sep_v=sep_v||"^\n-{3,}\n\n";
   sec.setAttribute('data-markdown',md);
