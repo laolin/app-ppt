@@ -33,11 +33,13 @@
       </div><!-- .slide -->
     </div><!-- .reveal -->
 <a data-markdown><!-- 为了加载markdown依赖文件 --></a>
-<section id='ppt-slides-first' data-background="#8070f0" style="display:none">
+<section id='ppt-slides-first' data-background="#008000" style="display:none">
 <h3>欢迎光临LAOLIN在线演示系统</h3>
 <h2>LAOLIN-WEB-PPT</h2>
 <hr/>
 请按 【空格】【n】【p】【←】【→】 按进行左右翻页
+<p></p>
+<h3><a href="#" onclick='return autoPlay()'>或点此自动播放</a></h3>
 </section>
 <section id='ppt-slides-last' style="display:none">
 <h3>放映结束</h3>
@@ -115,9 +117,9 @@ function setMd(mdf,sep_s,sep_v){
   Reveal.sync();
   Reveal.slide(0);
   if(document.all) {
-    document.title=ep.children[0].innerText;
+    document.title=ep.children[1].innerText;
   } else {
-    document.title=ep.children[0].textContent;
+    document.title=ep.children[1].textContent;
   }
   Reveal.data=Reveal.data||{};
   Reveal.data.dataPath=dataPath;
@@ -125,6 +127,13 @@ function setMd(mdf,sep_s,sep_v){
   var script = document.createElement('script');
   script.src = dataPath+mdf+"/Reveal.config.js";
   document.body.appendChild(script);
+}
+function autoPlay(){
+  Reveal.next()
+  Reveal.configure({
+    autoSlide: 5000
+  })
+  return false
 }
 </script>
 
