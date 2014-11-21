@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>laolin ppt web application | powered by reveal.js </title>
+    <title>欢迎光临LAOLIN在线演示系统</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -34,7 +34,7 @@
   </head>
 
   <body>
-
+  <div style='display:none'><img src='/_dev.laolin.com/iTongJi.org/b2010827114642.jpg'/></div>
     <div class="reveal">
 
       <!-- Any section element inside of this container is displayed as a slide -->
@@ -58,15 +58,19 @@
 <p>-== 感谢观看 ==-
 <p><a href='#' class='btn' onclick="Reveal.slide(0);return false;">回到第一页</a>
 <p><a href='#' class='btn' onclick="Reveal.toggleOverview(true);return false;">全部页面总览</a>
-<p><a href='./#/1'>[内容列表]</a>
-<p><a href='./?ppt=data%2fppt-help.md'>[帮助文件]</a>
+<hr>
+<ul>
+<li><a href='./#/1'> PPT列表 </a>
+<li><a href='./?ppt=data%2fppt-help.md'>帮助文件</a>
+</ul>
 <hr>
   &copy; 2014 <a href='http://laolin.com'>laolin</a> 在线演示系统
 </section>
 
     <script src="lib/reveal.js/lib/js/head.min.js"></script>
     <script src="lib/reveal.js/js/reveal.min.js"></script>
-
+    <script src='lib/reveal.js/plugin/markdown/marked.js'></script>
+    <script src='lib/reveal.js/plugin/markdown/markdown.js'></script>
     <script>
 
       var location_hash=document.location.hash;
@@ -88,19 +92,7 @@
         // Optional libraries used to extend on reveal.js
         dependencies: [
           { src: 'lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); },
-            async: true,
-            callback: function(){
-              var ppt_file= Reveal.getQueryHash().ppt;
-              if(!ppt_file) {
-                ppt_file='data/_list.md';
-              }
-              setMd(ppt_file);
-              document.location.hash=location_hash;
-            }
-          },
-          { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          /*{ src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { /*hljs.initHighlightingOnLoad(); } },*/
           { src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
           { src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
@@ -109,6 +101,15 @@
       
     </script>
 <script>
+;(function(){
+  var ppt_file= Reveal.getQueryHash().ppt;
+  if(!ppt_file) {
+    ppt_file='data/_list.md';
+  }
+  setMd(ppt_file);
+  document.location.hash=location_hash;
+})();
+            
 function setMd(md,sep_s,sep_v){
   var lastppt=document.getElementById('ppt-slides-end-hidden');
   lastppt.setAttribute('id','ppt-slides-end');
@@ -130,6 +131,11 @@ function setMd(md,sep_s,sep_v){
   console.log('dependencies markdown callback');
   RevealMarkdown.initialize();
   Reveal.slide(0);
+  if(document.all) {
+    document.title=ep.children[0].innerText;
+  } else {
+    document.title=ep.children[0].textContent;
+  }
 }
 </script>
 
