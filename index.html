@@ -43,10 +43,10 @@
 <section>
 <h2> LAOLIN-WEB-PPT</h2>
 <h3>欢迎光临LAOLIN在线演示系统</h3>
-<ul>
-<li><a href='./?ppt=data%2f_list.md'>[内容列表]</a></li>
-<li><a href='./?ppt=data%2fppt-help.md'>[帮助文件]</a></li>
-</ul>
+<hr/>
+正在加载中...
+<a href='./?ppt=data%2f_list.md'>[内容列表]</a>
+<a href='./?ppt=data%2fppt-help.md'>[帮助文件]</a>
 </section>        
       </div><!-- .slide -->
     </div><!-- .reveal -->
@@ -55,12 +55,10 @@
 <section id='ppt-slides-end-hidden' style="display:none">
 <h3>放映结束</h3>
   
-<p>感谢观看。
-<p>&nbsp;
+<p>-== 感谢观看 ==-
 <p><a href='#' class='btn' onclick="Reveal.slide(0);return false;">回到第一页</a>
 <p><a href='#' class='btn' onclick="Reveal.toggleOverview(true);return false;">全部页面总览</a>
-<p><a href='./'>关闭此PPT</a>
-<p><a href='./?ppt=data%2f_list.md'>[内容列表]</a>
+<p><a href='./#/1'>[内容列表]</a>
 <p><a href='./?ppt=data%2fppt-help.md'>[帮助文件]</a>
 <hr>
   &copy; 2014 <a href='http://laolin.com'>laolin</a> 在线演示系统
@@ -95,10 +93,11 @@
             async: true,
             callback: function(){
               var ppt_file= Reveal.getQueryHash().ppt;
-              if(ppt_file) {
-                setMd(ppt_file);
-                document.location.hash=location_hash;
+              if(!ppt_file) {
+                ppt_file='data/_list.md';
               }
+              setMd(ppt_file);
+              document.location.hash=location_hash;
             }
           },
           { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
