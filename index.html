@@ -33,8 +33,13 @@
       </div><!-- .slide -->
     </div><!-- .reveal -->
 <a data-markdown><!-- 为了加载markdown依赖文件 --></a>
-
-<section id='ppt-slides-end-hidden' style="display:none">
+<section id='ppt-slides-first' data-background="#8070f0" style="display:none">
+<h3>欢迎光临LAOLIN在线演示系统</h3>
+<h2>LAOLIN-WEB-PPT</h2>
+<hr/>
+请按 【空格】【n】【p】【←】【→】 按进行左右翻页
+</section>
+<section id='ppt-slides-last' style="display:none">
 <h3>放映结束</h3>
   
 <p>-== 感谢观看 ==-
@@ -85,17 +90,19 @@
 })();
             
 function setMd(mdf,sep_s,sep_v){
-  var mdPath='./data/';
-  var lastppt=document.getElementById('ppt-slides-end-hidden');
+  var dataPath='./data/';
+  var firstppt=document.getElementById('ppt-slides-first');
+  var lastppt=document.getElementById('ppt-slides-last');
   lastppt.setAttribute('id','ppt-slides-end');
   lastppt.setAttribute('style','');
   var ep=document.getElementById('slide-container');
   while (ep.hasChildNodes()) {
     ep.removeChild(ep.lastChild);
   }
+  ep.appendChild(firstppt);
   sec=document.createElement('section');
   mdf=mdf||'_list';
-  md=mdPath+mdf+'/'+mdf+'.md';
+  md=dataPath+mdf+'/'+mdf+'.md';
   sep_s=sep_s||"^\n={3,}\n\n";
   sep_v=sep_v||"^\n-{3,}\n\n";
   sec.setAttribute('data-markdown',md);
@@ -104,14 +111,20 @@ function setMd(mdf,sep_s,sep_v){
   ep.appendChild(sec);
   ep.appendChild(lastppt);
   
-  console.log('dependencies markdown callback');
   RevealMarkdown.initialize();
+  Reveal.sync();
   Reveal.slide(0);
   if(document.all) {
     document.title=ep.children[0].innerText;
   } else {
     document.title=ep.children[0].textContent;
   }
+  Reveal.data=Reveal.data||{};
+  Reveal.data.dataPath=dataPath;
+  Reveal.data.mdPath=mdf;
+  var script = document.createElement('script');
+  script.src = dataPath+mdf+"/Reveal.config.js";
+  document.body.appendChild(script);
 }
 </script>
 
