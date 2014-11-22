@@ -31,7 +31,7 @@
       </div><!-- .slide -->
     </div><!-- .reveal -->
 <a data-markdown><!-- 为了加载markdown依赖文件 --></a>
-<section id='ppt-slides-first' data-background="#008000" style="display:none">
+<section id='ppt-slides-first' data-background="#008000">
 <h3>欢迎光临LAOLIN在线演示系统</h3>
 <h2>LAOLIN-WEB-PPT</h2>
 <hr/>
@@ -42,20 +42,15 @@
 <p></p>
 <h3><a href="#" onclick='return autoPlay()'>或点此自动播放</a></h3>
 </section>
-<section id='ppt-slides-last' style="display:none">
-<h3>放映结束</h3>
-  
-<p>-== 感谢观看 ==-
-<p><a href='#' class='btn' onclick="Reveal.slide(0);return false;">回到第一页</a>
-<p><a href='#' class='btn' onclick="Reveal.toggleOverview(true);return false;">全部页面总览</a>
+<div id='ppt-slides-last' class="fragment grow" >
 <hr>
-<ul>
-<li><a href='./#/1'> PPT列表 </a>
-<li><a href='./?ppt=ppt-help'>帮助文件</a>
-</ul>
-<hr>
-  &copy; 2014 <a href='http://laolin.com'>laolin</a> 在线演示系统
-</section>
+<a href='#/0' class='btn'>返回第一页</a>
+<a href='#' class='btn' onclick="Reveal.toggleOverview(true);return false;">页面总览</a>
+| &copy; 2014 <a href='http://laolin.com'>laolin</a> 
+| <a href='./#/1'> PPT列表 </a>
+<a href='./?ppt=ppt-help'>帮助</a>
+
+</div>
 
     <script src="lib/reveal.js/lib/js/head.min.js"></script>
     <script src="lib/reveal.js/js/reveal.min.js"></script>
@@ -96,8 +91,6 @@ function setMd(mdf,sep_s,sep_v){
   var dataPath='./data/';
   var firstppt=document.getElementById('ppt-slides-first');
   var lastppt=document.getElementById('ppt-slides-last');
-  lastppt.setAttribute('id','ppt-slides-end');
-  lastppt.setAttribute('style','');
   var ep=document.getElementById('slide-container');
   while (ep.hasChildNodes()) {
     ep.removeChild(ep.lastChild);
@@ -112,9 +105,9 @@ function setMd(mdf,sep_s,sep_v){
   sec.setAttribute('data-separator',sep_s);
   sec.setAttribute('data-vertical',sep_v);
   ep.appendChild(sec);
-  ep.appendChild(lastppt);
   
   RevealMarkdown.initialize();
+  ep.lastChild.appendChild(lastppt);
   Reveal.sync();
   Reveal.slide(0);
   if(document.all) {
