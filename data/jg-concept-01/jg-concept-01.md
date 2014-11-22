@@ -237,9 +237,9 @@ B级高度高层建筑
 - 钩鱼台国宾馆<!-- .element: class="fragment" -->
 - 外滩18号改造 <!-- .element: class="fragment" --> 
 - 世博某某馆<!-- .element: class="fragment" -->
-- 其实就是个临时的两层小建筑<!-- .element: class="fragment" -->
+  - 其实就是个临时的两层小建筑<!-- .element: class="fragment" -->
 - 援非盟中心<!-- .element: class="fragment" -->
-- 要放在国内就一普通建筑<!-- .element: class="fragment" -->
+  - 要放在国内就一普通建筑<!-- .element: class="fragment" -->
 
 
 ===
@@ -265,6 +265,8 @@ B级高度高层建筑
 - 1.3 面积多大？
 - 1.4 功能多高级？
 
-###敬请期待第二大点：
+<hr><!-- .element: class="fragment" -->
 
-## [2. 结构分类](./?ppt=jg-concept-02)
+敬请期待第二大点：<!-- .element: class="fragment" -->
+
+## [2. 结构分类](./?ppt=jg-concept-02)<!-- .element: class="fragment" -->
