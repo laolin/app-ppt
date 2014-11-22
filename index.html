@@ -41,12 +41,13 @@
 <hr/>
 翻页：【空格/n】【p】【↑/k】【↓/j】【←/h】【→/l】 
 <p></p>
-<h3><a href="#" onclick='return autoPlay()'>或点此自动播放</a></h3>
+<h3><a href="#" onclick='return autoPlay()'>点此自动翻页</a></h3>
 </section>
 <section id='ppt-slides-last' data-background="#003">
 <h3>放映结束</h3>
   
 <p>-== 感谢观看 ==-
+<p><a href="#" onclick='return autoPlay()'>再看一遍</a>
 <p><a href='#/0' class='btn'>回到第一页</a>
 <p><a href='#' class='btn' onclick="Reveal.toggleOverview(true);return false;">全部页面总览</a>
 <hr>
@@ -147,7 +148,7 @@ function setMd(mdf,sep_s,sep_v){
   }
 }
 function autoPlay(){
-  Reveal.next()
+  Reveal.slide(1)
   Reveal.configure({
     autoSlide: 2500
   })
