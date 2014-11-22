@@ -27,8 +27,6 @@
 <h3>欢迎光临LAOLIN在线演示系统</h3>
 <hr/>
 正在加载中...
-<a href='./?ppt=data%2f_list.md'>[内容列表]</a>
-<a href='./?ppt=data%2fppt-help.md'>[帮助文件]</a>
 </section>        
       </div><!-- .slide -->
     </div><!-- .reveal -->
@@ -36,6 +34,9 @@
 <section id='ppt-slides-first' data-background="#008000" style="display:none">
 <h3>欢迎光临LAOLIN在线演示系统</h3>
 <h2>LAOLIN-WEB-PPT</h2>
+<hr/>
+<h1 class='ppt-title'></h1>
+<h2 class='ppt-title'></h2>
 <hr/>
 翻页：【空格/n】【p】【↑/k】【↓/j】【←/h】【→/l】 
 <p></p>
@@ -124,9 +125,25 @@ function setMd(mdf,sep_s,sep_v){
   Reveal.data=Reveal.data||{};
   Reveal.data.dataPath=dataPath;
   Reveal.data.mdPath=mdf;
+  
+  //自动加载PPT数据目录下的Reveal.config.js并运行。
   var script = document.createElement('script');
   script.src = dataPath+mdf+"/Reveal.config.js";
   document.body.appendChild(script);
+  
+  //自动把PPT数据文件中首页的第一个H1,第一个H2的内容填到HTML中的首页
+  //ppt数据文件中首页的要求：第一个H1代表标题,第一个H2代表副标题
+  //html首页中的要求：做两个class=ppt-title的，分别放标题和副标题
+  var h12=ep.children[0].getElementsByClassName('ppt-title');
+  //h12.length==2
+  temp=ep.children[1].getElementsByTagName('h1');
+  if( temp.length ) {
+    h12[0].innerHTML=temp[0].innerHTML;
+  }
+  temp=ep.children[1].getElementsByTagName('h2');
+  if( temp.length ) {
+    h12[1].innerHTML=temp[0].innerHTML;
+  }
 }
 function autoPlay(){
   Reveal.next()
